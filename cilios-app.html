@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cílios by Ludmilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--rosa:#FAEAE6;--rg:#C9957A;--rl:#E8C5B0;--rd:#A07055;--dk:#3D2B1F;--md:#6B4C3B;--pale:#FDF6F3;--wh:#fff;--border:rgba(201,149,122,.22)}
+body{font-family:'Raleway',sans-serif;color:var(--dk);background:var(--pale);min-height:100vh}
+#app{max-width:800px;margin:0 auto;padding-bottom:60px}
+.hdr{background:var(--dk);padding:20px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.hdr-brand{display:flex;align-items:center;gap:12px}
+.hdr-logo{width:38px;height:38px;border-radius:10px;background:var(--rg);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.hdr-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:var(--rl);letter-spacing:.08em}
+.hdr-sub{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rosa);opacity:.5;margin-top:1px}
+.hdr-nav{display:flex;gap:7px}
+.hn{padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.7rem;font-weight:600;border:1.5px solid var(--rl);color:var(--rl);background:transparent;transition:all .2s}
+.hn:hover,.hn.act{background:var(--rg);border-color:var(--rg);color:#fff}
+.bd{padding:22px 30px}
+.st{font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.st::after{content:'';flex:1;height:1px;background:var(--rl)}
+.sn{background:var(--rg);color:#fff;font-family:'Raleway',sans-serif;font-size:.61rem;font-weight:700;width:19px;height:19px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.il{font-size:.63rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--md);margin-bottom:5px;display:block}
+input,textarea,select{border:1px solid var(--rl);border-radius:8px;padding:8px 11px;font-family:'Raleway',sans-serif;font-size:.84rem;color:var(--dk);background:var(--pale);outline:none;width:100%;transition:border-color .2s;margin-bottom:12px}
+input:focus,textarea:focus{border-color:var(--rg)}
+textarea{resize:vertical;min-height:55px;margin-bottom:0}
+.upz{border:2px dashed var(--border);border-radius:12px;padding:36px 20px;text-align:center;cursor:pointer;transition:all .22s;position:relative;background:var(--wh);overflow:hidden;margin-bottom:10px}
+.upz:hover{border-color:var(--rg);background:var(--rosa)}
+.upz input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;margin:0}
+.upz-icon{font-size:2rem;opacity:.7;margin-bottom:9px}
+.upz-t{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--dk)}
+.upz-s{font-size:.7rem;color:var(--rg);opacity:.8;margin-top:3px}
+.prev-img{max-width:100%;max-height:240px;border-radius:8px;display:block;margin:0 auto}
+.gnb{width:100%;padding:13px;background:var(--dk);color:var(--rl);border:none;border-radius:10px;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:.1em;cursor:pointer;transition:background .2s;margin-top:14px}
+.gnb:hover:not(:disabled){background:var(--md)}
+.gnb:disabled{opacity:.55;cursor:not-allowed}
+.er{color:#c0392b;font-size:.75rem;text-align:center;padding:8px;background:#fdf0f0;border-radius:6px;margin-top:10px}
+.api-box{background:linear-gradient(135deg,#fff8f0,#faeae6);border:1.5px solid var(--rg);border-radius:11px;padding:14px 18px;margin:16px 30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.api-box.ok{background:linear-gradient(135deg,#f0fff4,#e6faed);border-color:#6BAF6B}
+.api-ico{font-size:1.2rem;flex-shrink:0}
+.api-t{font-size:.75rem;font-weight:600;color:var(--dk)}
+.api-s{font-size:.68rem;color:var(--md)}
+.api-s a{color:var(--rg);font-weight:600;text-decoration:none}
+.api-row{display:flex;gap:7px;margin-top:7px}
+.api-inp{flex:1;border:1px solid var(--rl);border-radius:7px;padding:6px 10px;font-size:.78rem;font-family:'Raleway',sans-serif;color:var(--dk);background:#fff;outline:none;margin:0}
+.api-inp:focus{border-color:var(--rg)}
+.api-sv{padding:6px 14px;background:var(--dk);color:var(--rl);border:none;border-radius:7px;cursor:pointer;font-size:.72rem;font-weight:600;font-family:'Raleway',sans-serif;white-space:nowrap}
+.bk{padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.7rem;font-weight:600;background:transparent;color:var(--dk);border:1.5px solid var(--dk);transition:all .2s;margin-bottom:16px}
+.bk:hover{background:var(--dk);color:var(--pale)}
+.card{background:var(--wh);border:1px solid var(--rl);border-radius:12px;overflow:hidden;margin-bottom:13px}
+.card-hdr{padding:10px 15px;background:var(--rosa);border-bottom:1px solid var(--rl)}
+.card-t{font-family:'Cormorant Garamond',serif;font-size:.97rem;color:var(--dk)}
+.card-bd{padding:13px 15px}
+.banner{background:var(--rosa);border-left:3px solid var(--rg);padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:14px;font-family:'Cormorant Garamond',serif;font-size:.93rem;font-style:italic;color:var(--dk);line-height:1.5}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}
+.sp{background:var(--pale);border:1px solid var(--rl);border-radius:9px;padding:10px 12px}
+.sp-l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rg);margin-bottom:3px}
+.sp-v{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--dk)}
+.sp-d{font-size:.7rem;color:var(--md);margin-top:2px;line-height:1.35}
+.tbl{width:100%;border-collapse:collapse;font-size:.74rem}
+.tbl th{background:var(--dk);color:var(--rl);padding:6px 9px;text-align:left;font-weight:500;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.tbl td{padding:6px 9px;border-bottom:1px solid var(--rosa);color:var(--dk)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:var(--rosa);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.ul li{font-size:.74rem;line-height:1.5;color:var(--dk);padding-left:12px;position:relative}
+.ul li::before{content:'◆';position:absolute;left:0;color:var(--rg);font-size:.4rem;top:5px}
+.motiv{background:var(--dk);border-radius:11px;padding:18px 22px;text-align:center;margin-bottom:16px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.motiv-t{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:300;font-style:italic;color:var(--rl);line-height:1.6}
+.ftr{text-align:center;font-size:.63rem;color:#B09080;letter-spacing:.09em;text-transform:uppercase}
+.lbar{background:var(--wh);border:1px solid var(--rl);border-radius:11px;padding:12px 15px;margin-bottom:16px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.lbar-t{font-size:.69rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--md)}
+.lsw{display:flex;border:1.5px solid var(--rg);border-radius:7px;overflow:hidden}
+.lb{padding:6px 14px;font-size:.73rem;font-weight:600;cursor:pointer;border:none;font-family:'Raleway',sans-serif;transition:all .18s;background:var(--pale);color:var(--md)}
+.lb.on{background:var(--rg);color:#fff}
+.pbtn{margin-left:auto;padding:7px 14px;border-radius:7px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.72rem;font-weight:600;background:var(--dk);color:var(--rl);border:none}
+.pbtn:hover{background:var(--md)}
+/* CLIENTS */
+.cl-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cl-t{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300}
+.add-btn{padding:8px 16px;background:var(--dk);color:var(--rl);border:none;border-radius:8px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.73rem;font-weight:600}
+.add-btn:hover{background:var(--md)}
+.sw{position:relative;margin-bottom:14px}
+.sw input{padding-left:32px;background:#fff;margin:0}
+.sw-ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--md);font-size:.85rem;pointer-events:none}
+.cl-card{background:var(--wh);border:1px solid var(--rl);border-radius:11px;overflow:hidden;margin-bottom:10px}
+.cl-ch{padding:12px 16px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.cl-ch:hover{background:var(--rosa)}
+.cl-av{width:34px;height:34px;border-radius:50%;background:var(--rg);color:#fff;font-family:'Cormorant Garamond',serif;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cl-nm{font-family:'Cormorant Garamond',serif;font-size:.97rem;color:var(--dk)}
+.cl-mt{font-size:.67rem;color:var(--md);margin-top:1px}
+.cl-bg{background:var(--rosa);color:var(--rd);font-size:.63rem;font-weight:600;padding:2px 7px;border-radius:20px;margin-left:auto;flex-shrink:0}
+.cl-ar{color:var(--rg);font-size:.95rem;transition:transform .2s;flex-shrink:0}
+.cl-ar.op{transform:rotate(90deg)}
+.cl-bd{border-top:1px solid var(--rosa);padding:10px 16px;display:flex;flex-direction:column;gap:7px}
+.lr{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:var(--pale);border-radius:7px;border:1px solid var(--rosa);gap:8px;flex-wrap:wrap}
+.lr-t{font-size:.79rem;font-weight:600;color:var(--dk);margin-bottom:1px}
+.lr-m{font-size:.66rem;color:var(--md)}
+.lr-btns{display:flex;gap:5px}
+.vb{padding:4px 10px;border-radius:5px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.65rem;font-weight:600;border:none;background:var(--rg);color:#fff}
+.db{padding:4px 10px;border-radius:5px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.65rem;font-weight:600;background:transparent;color:var(--rd);border:1px solid var(--rl)}
+.cl-add{display:flex;justify-content:flex-end;margin-top:3px}
+.add-l{padding:5px 11px;background:transparent;color:var(--rg);border:1.5px dashed var(--rg);border-radius:7px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.69rem;font-weight:600}
+.cl-del{display:flex;justify-content:flex-end;padding:0 16px 10px}
+.del-b{padding:4px 10px;background:transparent;color:#c0392b;border:1px solid #e8c5c5;border-radius:5px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.65rem;font-weight:600}
+.es{text-align:center;padding:50px 20px;color:var(--md)}
+.es .bt{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;margin-bottom:6px}
+.es .sm{font-size:.76rem;opacity:.7}
+/* SETTINGS */
+.cfg-card{background:var(--wh);border:1px solid var(--rl);border-radius:11px;padding:16px;margin-bottom:12px}
+.cfg-t{font-family:'Cormorant Garamond',serif;font-size:.96rem;color:var(--dk);margin-bottom:11px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.tag{border:1.5px solid var(--rg);border-radius:20px;padding:4px 11px;font-size:.73rem;color:var(--dk);background:var(--rosa);font-family:'Raleway',sans-serif;display:flex;align-items:center;gap:5px}
+.tag-x{cursor:pointer;color:var(--rd);font-weight:700;font-size:.82rem;background:none;border:none;padding:0}
+.add-r{display:flex;gap:7px;margin-top:6px}
+.add-r input{flex:1;margin:0}
+.add-r button{padding:7px 13px;background:var(--dk);color:var(--rl);border:none;border-radius:7px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.71rem;font-weight:600;white-space:nowrap}
+.sv-btn{width:100%;padding:12px;background:var(--rg);color:#fff;border:none;border-radius:9px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;letter-spacing:.08em;margin-top:6px}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal{background:var(--wh);border-radius:13px;padding:24px 26px;max-width:320px;width:100%;text-align:center}
+.modal-t{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;margin-bottom:6px}
+.modal-s{font-size:.76rem;color:var(--md);margin-bottom:18px;line-height:1.5}
+.modal-btns{display:flex;gap:8px;justify-content:center}
+.mb{padding:8px 18px;border-radius:7px;cursor:pointer;font-family:'Raleway',sans-serif;font-size:.74rem;font-weight:600;border:none;transition:all .2s}
+.mb.c{background:transparent;color:var(--dk);border:1.5px solid var(--rl)}
+.mb.d{background:#c0392b;color:#fff}
+@media print{body{background:#fff}.lbar,.bk,.hdr-nav,.api-box{display:none!important}.hdr,.tbl th,.motiv{-webkit-print-color-adjust:exact;print-color-adjust:exact}#app{max-width:100%}.bd{padding:14px 20px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="hdr">
+    <div class="hdr-brand">
+      <div class="hdr-logo">👁️</div>
+      <div>
+        <div class="hdr-name">Cílios by Ludmilla</div>
+        <div class="hdr-sub">Ludmilla Nail Design · Genève</div>
+      </div>
+    </div>
+    <div class="hdr-nav" id="nav"></div>
+  </div>
+  <div id="apiBox"></div>
+  <div id="main"></div>
+  <div id="modal"></div>
+</div>
+<script>
+var V='list', openF={}, srch='', curL=null, cfgS=null, cbOk=null;
+var fs={cid:null,cname:'',age:'',b64:null,src:null,obs:'',load:false,err:''};
+
+var DCFG={tec:['Clássico','Esquilo','Boneca','Gatinho'],cur:['C','D'],esp:['0.07','0.10','0.12','0.15','0.20'],cmp:['8mm','9mm','10mm','11mm','12mm','13mm','14mm','15mm']};
+
+function gk(){return localStorage.getItem('gk')||'';}
+function sk(k){localStorage.setItem('gk',k.trim());}
+function gdb(){try{return JSON.parse(localStorage.getItem('cdb')||'{"c":[]}')}catch(e){return{c:[]}}}
+function sdb(d){localStorage.setItem('cdb',JSON.stringify(d));}
+function gcfg(){try{return JSON.parse(localStorage.getItem('ccfg')||JSON.stringify(DCFG))}catch(e){return DCFG;}}
+function scfg(c){localStorage.setItem('ccfg',JSON.stringify(c));}
+function fd(iso){return new Date(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});}
+function ini(n){return n.split(' ').filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('');}
+
+function rApi(){
+  var k=gk(), el=document.getElementById('apiBox');
+  if(k){el.innerHTML='<div class="api-box ok" style="margin:14px 30px"><span class="api-ico">✅</span><div><div class="api-t">Chave Gemini configurada — IA pronta!</div><div class="api-s"><span style="cursor:pointer;color:var(--rg)" onclick="localStorage.removeItem(\'gk\');rApi()">Trocar chave</span></div></div></div>';}
+  else{el.innerHTML='<div class="api-box" style="margin:14px 30px"><span class="api-ico">🔑</span><div style="flex:1"><div class="api-t">Configure sua chave Gemini</div><div class="api-s">Acesse <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> → Criar chave → cole abaixo</div><div class="api-row"><input class="api-inp" id="aki" type="password" placeholder="AIza..."><button class="api-sv" onclick="sk(document.getElementById(\'aki\').value);rApi()">Salvar</button></div></div></div>';}
+}
+
+function showM(t,s,cb){cbOk=cb;document.getElementById('modal').innerHTML='<div class="modal-bg" onclick="closeM()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-t">'+t+'</div><div class="modal-s">'+s+'</div><div class="modal-btns"><button class="mb c" onclick="closeM()">Cancelar</button><button class="mb d" onclick="doM()">Excluir</button></div></div></div>';}
+function closeM(){document.getElementById('modal').innerHTML='';cbOk=null;}
+function doM(){if(cbOk)cbOk();closeM();}
+
+function goList(){V='list';rAll();}
+function goNew(cid,cnm){V='new';fs={cid:cid||null,cname:cnm||'',age:'',b64:null,src:null,obs:'',load:false,err:''};rAll();}
+function goView(cid,lid){var db=gdb(),cl=db.c.find(c=>c.id===cid),l=cl&&cl.l&&cl.l.find(x=>x.id===lid);if(!l)return;curL={cid,lid,d:l,lang:'pt'};V='view';rAll();}
+function goCfg(){V='cfg';cfgS=JSON.parse(JSON.stringify(gcfg()));rAll();}
+
+function rNav(){document.getElementById('nav').innerHTML='<button class="hn '+(V==='list'?'act':'')+'" onclick="goList()">📁 Clientes</button><button class="hn '+(V==='new'?'act':'')+'" onclick="goNew()">✦ Nova Análise</button><button class="hn '+(V==='cfg'?'act':'')+'" onclick="goCfg()">⚙️ Config</button>';}
+
+function rList(){
+  var db=gdb(),q=srch.toLowerCase(),cls=db.c.filter(c=>!q||c.n.toLowerCase().includes(q));
+  var h='<div class="bd"><div class="cl-hdr"><div class="cl-t">Minhas Clientes</div><button class="add-btn" onclick="goNew()">+ Nova Análise</button></div><div class="sw"><span class="sw-ic">🔍</span><input placeholder="Pesquisar..." value="'+srch+'" oninput="srch=this.value;rAll()"></div>';
+  if(!cls.length){h+='<div class="es"><div class="bt">Nenhuma cliente ainda</div><div class="sm">Clique em Nova Análise para começar</div></div>';}
+  else{h+='<div>';cls.forEach(function(cl){var op=!!openF[cl.id],ls=cl.l||[],last=ls.length?fd(ls[ls.length-1].at):'—';
+    h+='<div class="cl-card"><div class="cl-ch" onclick="openF[\''+cl.id+'\']=!openF[\''+cl.id+'\'];rAll()"><div class="cl-av">'+ini(cl.n)+'</div><div><div class="cl-nm">'+cl.n+'</div><div class="cl-mt">'+(cl.age?cl.age+' anos · ':'')+'Último: '+last+'</div></div><div class="cl-bg">'+ls.length+'</div><div class="cl-ar '+(op?'op':'')+'">›</div></div>';
+    if(op){h+='<div class="cl-bd">';if(!ls.length){h+='<div style="font-size:.75rem;color:var(--md);padding:4px 0">Nenhuma análise ainda.</div>';}else{ls.forEach(function(l,i){h+='<div class="lr"><div style="flex:1"><div class="lr-t">Análise '+(i+1)+' — '+(l.tec||'—')+'</div><div class="lr-m">'+fd(l.at)+'</div></div><div class="lr-btns"><button class="vb" onclick="goView(\''+cl.id+'\',\''+l.id+'\')">Ver</button><button class="db" onclick="delL(\''+cl.id+'\',\''+l.id+'\')">✕</button></div></div>';});}
+    h+='<div class="cl-add"><button class="add-l" onclick="goNew(\''+cl.id+'\',\''+cl.n+'\')">+ Nova análise</button></div></div><div class="cl-del"><button class="del-b" onclick="delC(\''+cl.id+'\',\''+cl.n+'\')">🗑 Excluir cliente</button></div>';}
+    h+='</div>';});h+='</div>';}
+  h+='</div>';document.getElementById('main').innerHTML=h;
+}
+
+function delL(cid,lid){showM('Excluir análise?','Não pode ser desfeito.',function(){var db=gdb(),cl=db.c.find(c=>c.id===cid);if(cl)cl.l=cl.l.filter(x=>x.id!==lid);sdb(db);rAll();});}
+function delC(cid,nm){showM('Excluir '+nm+'?','Todas as análises serão excluídas.',function(){var db=gdb();db.c=db.c.filter(c=>c.id!==cid);delete openF[cid];sdb(db);rAll();});}
+
+function rNew(){
+  var isEx=!!fs.cid;
+  document.getElementById('main').innerHTML='<div class="bd"><button class="bk" onclick="goList()">← Voltar</button><div style="font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;font-weight:300;margin-bottom:18px">'+(isEx?'Nova análise para <strong>'+fs.cname+'</strong>':'Nova Análise de Cílios')+'</div>'
+  +'<div style="margin-bottom:18px"><div class="st"><span class="sn">1</span> Dados da Cliente</div>'
+  +(isEx?'':'<label class="il">Nome</label><input value="'+fs.cname+'" placeholder="Ex: Sophie Martin" oninput="fs.cname=this.value">')
+  +'<label class="il">Idade</label><input type="number" value="'+fs.age+'" placeholder="28" oninput="fs.age=this.value"></div>'
+  +'<div style="margin-bottom:18px"><div class="st"><span class="sn">2</span> Foto do Rosto</div>'
+  +'<div class="upz" id="dz"><input type="file" accept="image/*" onchange="loadImg(event)">'
+  +(fs.src?'<img src="'+fs.src+'" class="prev-img">'
+  :'<div class="upz-icon">📷</div><div class="upz-t">Arrasta ou clica para escolher</div><div class="upz-s">Foto do rosto de frente</div>')
+  +'</div>'+(fs.src?'<div style="text-align:center;margin-top:6px"><button style="padding:5px 11px;background:transparent;color:var(--rg);border:1px solid var(--rg);border-radius:7px;cursor:pointer;font-family:Raleway,sans-serif;font-size:.68rem;font-weight:600" onclick="fs.b64=null;fs.src=null;rAll()">✕ Remover</button></div>':'')+'</div>'
+  +'<div style="margin-bottom:18px"><div class="st"><span class="sn">3</span> Observações (opcional)</div><textarea placeholder="Ex: olhos caídos, quer efeito discreto..." oninput="fs.obs=this.value">'+fs.obs+'</textarea></div>'
+  +(fs.err?'<div class="er">'+fs.err+'</div>':'')
+  +'<button class="gnb" onclick="gen()" '+(fs.load?'disabled':'')+'>'+(fs.load?'Analisando...':'Analisar e Gerar Laudo ✦')+'</button></div>';
+  var dz=document.getElementById('dz');
+  if(dz){dz.addEventListener('dragover',function(e){e.preventDefault();dz.style.borderColor='var(--rg)';});dz.addEventListener('dragleave',function(){dz.style.borderColor='';});dz.addEventListener('drop',function(e){e.preventDefault();var f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/'))loadFile(f);});}
+}
+
+function loadImg(e){var f=e.target.files[0];if(f)loadFile(f);}
+function loadFile(file){var r=new FileReader();r.onload=function(ev){var img=new Image();img.onload=function(){var tc=document.createElement('canvas'),max=800,ratio=Math.min(max/img.width,max/img.height,1);tc.width=img.width*ratio;tc.height=img.height*ratio;tc.getContext('2d').drawImage(img,0,0,tc.width,tc.height);fs.b64=tc.toDataURL('image/jpeg',0.8).split(',')[1];fs.src=ev.target.result;rAll();};img.src=ev.target.result;};r.readAsDataURL(file);}
+
+function rView(){
+  if(!curL){goList();return;}
+  var l=curL.d,lang=curL.lang,cid=curL.cid,db=gdb(),cl=db.c.find(c=>c.id===cid),fr=lang==='fr';
+  var h='<div class="bd"><button class="bk" onclick="openF[\''+cid+'\']=true;goList()">← Voltar</button>'
+  +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:1.45rem;font-weight:300">'+(fr?'Analyse Cils':'Análise de Cílios')+'</div>'
+  +'<div style="font-size:.76rem;color:var(--rg);margin-bottom:14px">'+(cl?cl.n:'')+(l.age?' · '+l.age+(fr?' ans':' anos'):'')+' · '+fd(l.at)+'</div>'
+  +'<div class="lbar"><span class="lbar-t">Idioma:</span><div class="lsw"><button class="lb '+(lang==='pt'?'on':'')+'" onclick="curL.lang=\'pt\';rAll()">🇧🇷 PT</button><button class="lb '+(lang==='fr'?'on':'')+'" onclick="curL.lang=\'fr\';rAll()">🇫🇷 FR</button></div><button class="pbtn" onclick="window.print()">⬇ PDF</button></div>'
+  +'<div class="banner">'+(fr?(l.ao_fr||l.ao):(l.ao||''))+'</div>'
+  +'<div class="card"><div class="card-hdr"><div class="card-t">👁️ '+(fr?'Analyse':'Análise')+'</div></div><div class="card-bd"><div class="g2">'
+  +'<div class="sp"><div class="sp-l">'+(fr?'Yeux':'Olhos')+'</div><div class="sp-v">'+(fr?(l.fo_fr||l.fo):(l.fo||'—'))+'</div></div>'
+  +'<div class="sp"><div class="sp-l">'+(fr?'Visage':'Rosto')+'</div><div class="sp-v">'+(fr?(l.fr_fr||l.fr2):(l.fr2||'—'))+'</div></div>'
+  +'<div class="sp"><div class="sp-l">'+(fr?'Technique':'Técnica')+'</div><div class="sp-v">'+(l.tec||'—')+'</div><div class="sp-d">'+(fr?(l.tm_fr||l.tm):(l.tm||''))+'</div></div>'
+  +'<div class="sp"><div class="sp-l">'+(fr?'Courbure':'Curvatura')+'</div><div class="sp-v">'+(l.cur||'—')+'</div><div class="sp-d">'+(fr?(l.cm_fr||l.cm):(l.cm||''))+'</div></div>'
+  +'</div></div></div>'
+  +'<div class="card"><div class="card-hdr"><div class="card-t">📐 '+(fr?'Cartographie':'Mapeamento')+'</div></div><div class="card-bd"><table class="tbl"><thead><tr><th>'+(fr?'Zone':'Zona')+'</th><th>'+(fr?'Courb.':'Curv.')+'</th><th>'+(fr?'Épais.':'Esp.')+'</th><th>'+(fr?'Long.':'Comp.')+'</th></tr></thead><tbody>'
+  +(l.map||[]).map(function(m){return'<tr><td>'+(fr?(m.zf||m.z):m.z)+'</td><td>'+m.c+'</td><td>'+m.e+'</td><td>'+m.l+'</td></tr>';}).join('')
+  +'</tbody></table></div></div>'
+  +'<div class="g2">'
+  +'<div class="card" style="margin-bottom:0"><div class="card-hdr"><div class="card-t">💡 '+(fr?'Conseils':'Dicas')+'</div></div><div class="card-bd"><ul class="ul">'+(fr?(l.di_fr||l.di||[]):(l.di||[])).map(function(d){return'<li>'+d+'</li>';}).join('')+'</ul></div></div>'
+  +'<div class="card" style="margin-bottom:0"><div class="card-hdr"><div class="card-t">⚠️ '+(fr?'Précautions':'Cuidados')+'</div></div><div class="card-bd"><ul class="ul">'+(fr?(l.cu_fr||l.cu||[]):(l.cu||[])).map(function(c){return'<li>'+c+'</li>';}).join('')+'</ul></div></div>'
+  +'</div>'
+  +'<div class="motiv" style="margin-top:13px"><div class="motiv-t">"'+(fr?(l.mg_fr||l.mg):(l.mg||''))+'"</div></div>'
+  +'<div class="ftr">Ludmilla Nail Design · Cílios · Route de Meyrin 49, Genève</div>'
+  +'</div>';
+  document.getElementById('main').innerHTML=h;
+}
+
+function rCfg(){
+  var cfg=cfgS||gcfg();
+  function sec(key,label,icon){
+    var items=cfg[key]||[];
+    return '<div class="cfg-card"><div class="cfg-t">'+icon+' '+label+'</div><div class="tags">'+items.map(function(item,i){return'<span class="tag">'+item+' <button class="tag-x" onclick="rmC(\''+key+'\','+i+')">×</button></span>';}).join('')+'</div><div class="add-r"><input id="ni_'+key+'" placeholder="Adicionar..."><button onclick="addC(\''+key+'\')">+ Add</button></div></div>';
+  }
+  document.getElementById('main').innerHTML='<div class="bd"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div style="font-family:\'Cormorant Garamond\',serif;font-size:1.4rem;font-weight:300">⚙️ Configurações</div><button class="bk" onclick="goList()">← Voltar</button></div>'
+  +'<div style="background:var(--rosa);border-left:3px solid var(--rg);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:16px;font-size:.76rem;color:var(--dk);line-height:1.5">A IA recomendará <strong>somente</strong> o que estiver configurado aqui.</div>'
+  +sec('tec','Técnicas','✨')+sec('cur','Curvaturas','〰️')+sec('esp','Espessuras','📏')+sec('cmp','Comprimentos','📐')
+  +'<button class="sv-btn" onclick="svCfg()">💾 Salvar Configurações</button></div>';
+}
+
+function addC(k){var inp=document.getElementById('ni_'+k),v=(inp&&inp.value||'').trim();if(!v)return;cfgS[k]=[...(cfgS[k]||[]),v];inp.value='';rCfg();}
+function rmC(k,i){cfgS[k]=cfgS[k].filter(function(_,idx){return idx!==i;});rCfg();}
+function svCfg(){scfg(cfgS);alert('✅ Configurações salvas!');goList();}
+
+function rAll(){rNav();rApi();if(V==='list')rList();else if(V==='new')rNew();else if(V==='view')rView();else if(V==='cfg')rCfg();}
+
+async function gen(){
+  if(!fs.cname.trim()&&!fs.cid){fs.err='⚠ Preencha o nome da cliente.';rAll();return;}
+  if(!fs.b64){fs.err='⚠ Adicione a foto do rosto.';rAll();return;}
+  var k=gk();if(!k){fs.err='⚠ Configure a chave Gemini.';rAll();return;}
+  fs.err='';fs.load=true;rAll();
+  try{
+    var cfg=gcfg(),db=gdb(),nm=fs.cname;
+    if(fs.cid){var cl=db.c.find(c=>c.id===fs.cid);if(cl)nm=cl.n;}
+    var p='Responda SOMENTE com JSON puro. Sem texto antes. Sem explicações. Comece com { e termine com }. Você é especialista em extensão de cílios. Analise o rosto e olhos nesta foto.'
+    +(nm?' Cliente: '+nm:'')+(fs.age?', '+fs.age+' anos.':'')+(fs.obs?' Obs: '+fs.obs+'.':'')
+    +' Use SOMENTE estas opções - Técnicas: '+cfg.tec.join(', ')+'. Curvaturas: '+cfg.cur.join(', ')+'. Espessuras: '+cfg.esp.join(', ')+'. Comprimentos: '+cfg.cmp.join(', ')+'.'
+    +' Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem markdown, sem explicações:'
+    +' {"ao":"analise detalhada do olho e rosto em portugues","ao_fr":"analyse détaillée en français","fo":"formato do olho","fo_fr":"format des yeux","fr2":"formato do rosto","fr_fr":"format du visage","tec":"nome da tecnica recomendada","tm":"motivo da tecnica em PT","tm_fr":"motif en FR","cur":"curvatura recomendada","cm":"motivo da curvatura PT","cm_fr":"motif courbure FR","map":[{"z":"Canto interno","zf":"Coin interne","c":"C","e":"0.07","l":"9mm"},{"z":"Zona média","zf":"Zone centrale","c":"C","e":"0.10","l":"11mm"},{"z":"Canto externo","zf":"Coin externe","c":"C","e":"0.07","l":"10mm"}],"di":["dica1","dica2","dica3"],"di_fr":["conseil1","conseil2","conseil3"],"cu":["cuidado1","cuidado2"],"cu_fr":["precaution1","precaution2"],"mg":"mensagem motivacional PT","mg_fr":"message FR"}'
+    +' Substitua os valores de exemplo pelos corretos para esta cliente.';
+    var resp=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+k,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'image/jpeg',data:fs.b64}},{text:p}]}],generationConfig:{temperature:0.5,maxOutputTokens:2048}})});
+    var data=await resp.json();
+    if(data.error)throw new Error(data.error.message);
+    // Join ALL parts and extract JSON
+    var allText=data.candidates[0].content.parts.map(function(p){return p.text||'';}).join('');
+    allText=allText.replace(/```json/gi,'').replace(/```/g,'').trim();
+    // Find the JSON object - look for {"ao" specifically
+    var s=allText.indexOf('{"ao"');
+    if(s===-1) s=allText.indexOf('{ "ao"');
+    if(s===-1) s=allText.indexOf('{\n  "ao"');
+    if(s===-1) s=allText.indexOf('{\n"ao"');
+    // Fallback: find first { 
+    if(s===-1) s=allText.indexOf('{');
+    var e=allText.lastIndexOf('}');
+    if(s===-1||e===-1)throw new Error('JSON não encontrado. Resp: '+allText.substring(0,300));
+    var jsonStr=allText.substring(s,e+1);
+    var parsed=JSON.parse(jsonStr);
+    parsed.id='l_'+Date.now();parsed.at=new Date().toISOString();parsed.age=fs.age;
+    if(fs.cid){var cl2=db.c.find(c=>c.id===fs.cid);if(cl2){cl2.l=cl2.l||[];cl2.l.push(parsed);}}
+    else{var cid2='c_'+Date.now();db.c.push({id:cid2,n:nm,age:fs.age,at:new Date().toISOString(),l:[parsed]});fs.cid=cid2;}
+    sdb(db);openF[fs.cid]=true;curL={cid:fs.cid,lid:parsed.id,d:parsed,lang:'pt'};V='view';
+  }catch(e2){fs.err='Erro: '+e2.message;fs.load=false;rAll();return;}
+  fs.load=false;rAll();
+}
+
+rAll();
+</script>
+</body>
+</html>
