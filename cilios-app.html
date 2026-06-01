@@ -270,7 +270,7 @@ async function gen(){
     var p1='Especialista em cílios. Analise foto.'+(nm?' Cliente: '+nm+'.':'')+(fs.age?' '+fs.age+' anos.':'')+(fs.obs?' Obs:'+fs.obs:'')
     +' Use: Técnicas=['+cfg.tec.join(',')+'] Curvaturas=['+cfg.cur.join(',')+'].'
     +' JSON apenas: {"ao":"1 frase PT","ao_fr":"1 phrase FR","fo":"olho PT","fo_fr":"FR","fr2":"rosto PT","fr_fr":"FR","tec":"tecnica","tm":"motivo PT","tm_fr":"FR","cur":"curvatura","cm":"motivo PT","cm_fr":"FR","mg":"msg PT","mg_fr":"msg FR"}';
-    var r1=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key='+k,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'image/jpeg',data:fs.b64}},{text:p1}]}],generationConfig:{temperature:0.5,maxOutputTokens:2000}})});
+    var r1=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+k,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'image/jpeg',data:fs.b64}},{text:p1}]}],generationConfig:{temperature:0.5,maxOutputTokens:2000},thinkingConfig:{thinkingBudget:0}})});
     var d1=await r1.json();
     if(d1.error)throw new Error(d1.error.message);
     var t1=d1.candidates[0].content.parts.map(function(x){return x.text||'';}).join('').replace(/```json|```/g,'').trim();
@@ -282,7 +282,7 @@ async function gen(){
     var p2='Especialista cílios. Olho: '+part1.fo+'. Técnica: '+part1.tec+'. Curvatura: '+part1.cur+'.'
     +' Espessuras=['+cfg.esp.join(',')+'] Comprimentos=['+cfg.cmp.join(',')+'].'
     +' JSON apenas: {"map":[{"z":"Canto interno","zf":"Coin interne","c":"C","e":"0.07","l":"9mm"},{"z":"Zona média","zf":"Zone centrale","c":"C","e":"0.10","l":"11mm"},{"z":"Canto externo","zf":"Coin externe","c":"C","e":"0.07","l":"10mm"}],"di":["d1","d2","d3"],"di_fr":["c1","c2","c3"],"cu":["c1","c2"],"cu_fr":["p1","p2"]}';
-    var r2=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key='+k,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:p2}]}],generationConfig:{temperature:0.5,maxOutputTokens:2000}})});
+    var r2=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+k,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:p2}]}],generationConfig:{temperature:0.5,maxOutputTokens:2000},thinkingConfig:{thinkingBudget:0}})});
     var d2=await r2.json();
     if(d2.error)throw new Error(d2.error.message);
     var t2=d2.candidates[0].content.parts.map(function(x){return x.text||'';}).join('').replace(/```json|```/g,'').trim();
